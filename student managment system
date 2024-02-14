@@ -1,0 +1,70 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class Student {
+public:
+    string name;
+    int rollNumber;
+    float grade;
+
+    Student(string n, int roll) : name(n), rollNumber(roll), grade(0.0f) {}
+
+    void display() {
+        cout << "Name: " << name << endl;
+        cout << "Roll Number: " << rollNumber << endl;
+        cout << "Grade: " << grade << endl;
+    }
+};
+
+void addStudent(vector<Student>& students) {
+    string name;
+    int rollNumber;
+    cout << "Enter student name: ";
+    cin >> name;
+    cout << "Enter roll number: ";
+    cin >> rollNumber;
+
+    Student newStudent(name, rollNumber);
+    students.push_back(newStudent);
+    cout << "Student added successfully!" << endl;
+}
+
+void displayStudents(const vector<Student>& students) {
+    for (const auto& student : students) {
+        student.display();
+    }
+}
+
+int main() {
+    vector<Student> students;
+    int choice;
+
+    do {
+        cout << "\nStudent Management System" << endl;
+        cout << "1. Add Student" << endl;
+        cout << "2. Display Students" << endl;
+        cout << "3. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                addStudent(students);
+                break;
+            case 2:
+                displayStudents(students);
+                break;
+            case 3:
+                cout << "Exiting..." << endl;
+                break;
+            default:
+                cout << "Invalid choice!" << endl;
+        }
+    } while (choice != 3);
+
+    return 0;
+}
